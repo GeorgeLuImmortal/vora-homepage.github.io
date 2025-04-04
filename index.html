@@ -230,7 +230,7 @@
           <h3 class="title is-4">2. Block-wise Distillation</h3>
           <ul>
             <li>Aligns LLM block features with ViT teacher via cosine similarity loss</li>
-            <li>Combined distillation (L_distill) and language modeling (L_LM) losses</li>
+            <li>Combined distillation and language modeling losses</li>
             <li>Accelerates training convergence by 35.5%</li>
           </ul>
 
@@ -264,36 +264,44 @@
   <div class="container">
     <div class="columns is-centered m-6">
       <div class="column is-full has-text-centered content">
-        <h2 class="title is-3">Statistics</h2>
+        <h2 class="title is-3">Key Findings</h2>
         <div id="results-carousel" class="carousel results-carousel">
           <div class="box m-5">
             <div class="content has-text-centered">
-              <img src="static/images/statistics_answer_len.png" alt="stat qa len" width="95%"/>
-              <p> Statistics of question and answer lengths of different languages aggregating training and test set, using GPT-4o tokenizer.</p>
+              <img src="static/images/loss_curves_full_llm.png" alt="stat qa len" width="95%"/>
+              <p> Language modeling losses in different settings. Training the full LLM with a new modality of data can lead to unrecoverable spike in loss curve, i.e., loss collapse.</p>
             </div>
           </div>
           <div class="box m-5">
             <div class="content has-text-centered">
-              <img src="static/images/len_table.png" alt="stat len table" width="40%"/>
-              <p> Mean lengths of question-answer pairs in different languages of the training set and test set, using GPT-4o tokenizer.</p>
+              <img src="static/images/ablation_loss" alt="stat len table" width="40%"/>
+              <p> Pre-training loss curves under different configurations. Loss values are smoothed (window=100) for visual clarity. The data sampling order was fixed to ensure fair comparison, as evidenced by the similar trajectories of the loss curves in various settings. LoRA-r1024|Bidirectional|Block-wise refers to the setting: LoRA with rank 1024, bi-directional attention masks for vision, and block-wise distillation. The configuration with the lowest loss was adopted as the default setting in our experiments.</p>
             </div>
           </div>
           <div class="box m-5">
             <div class="content has-text-centered">
-              <img src="static/images/word_cloud_qs.png" alt="stat word cloud qs" width="80%"/>
-              <p> Word clouds showcasing top questions in various languages, tokenized via NLTK with removing stop words, punctuation, and digits.</p>
+              <img src="static/images/aux_loss_ablation.png" alt="stat word cloud qs" width="80%"/>
+              <p> Average distillation loss across all blocks under various settings. Our LoRA-r1024|Bidirectional|Block-wise configuration achieves the lowest average distillation loss across all blocks. This indicates a closer alignment with the ViT’s feature space, confirming that bi-directional attention masks and a larger rank of LoRA layers also enhance visual knowledge transfer.</p>
             </div>
           </div>
           <div class="box m-5">
             <div class="content has-text-centered">
-              <img src="static/images/word_cloud_ans.png" alt="stat word cloud as" width="80%"/>
-              <p> Word clouds showcasing top answers in various languages, tokenized via NLTK with removing stop words, punctuation, and digits.</p>
+              <img src="static/images/loss_vs_steps.png" alt="stat word cloud as" width="80%"/>
+              <p> Data efficiency analysis. Our experiments demonstrate that combining bi-directional attention masks for vision tokens with block-wise knowledge distillation significantly improves data efficiency compared to the vanilla LoRA configuration. Furthermore, as the target loss decreases (e.g., from 1.5 to 1.1), the required data proportion relative to the baseline diminishes progressively, indicating higher data efficiency.</p>
             </div>
           </div>
           <div class="box m-5">
             <div class="content has-text-centered">
-              <img src="static/images/word_cloud_ans.png" alt="stat word cloud as" width="80%"/>
-              <p> Word clouds showcasing top answers in various languages, tokenized via NLTK with removing stop words, punctuation, and digits.</p>
+              <img src="static/images/ablation_performance.png" alt="stat word cloud as" width="80%"/>
+              <p> The performance of various settings on standard benchmarks reveals that lower loss during pre-training correlates with better performance. ``LoRA-r1024 (2B)" indicates that the rank for the LoRA layers is set to 1024, with approximately 2 billion parameters unfrozen for training in total.</p>
+            </div>
+          </div>
+          <div class="box m-5">
+            <div class="content has-text-centered">
+              <img src="static/images/main_result.png" alt="stat word cloud as" width="80%"/>
+              <p>
+              Comparison with previous methods on several benchmarks. Since this paper aims to demonstrate that \model{} is a strong base model, we did not scale the fine-tuning data. Therefore, we did not compare with recent state-of-the-art models that often require additional data engineering or involve proprietary datasets; methods that utilize extra fine-tuning data are grayed out. We classified domain-specific VQA data as fine-tuning data rather than pre-training data for EVEv2 and Mono-InternVL, which differs from their original classification in the respective papers. The notation "49M(2)" indicates that this method employs a two-stage training process using a total of 49M image-text pairs. The strikethrough notation <s>ViT</s> means that ViT is excluded during inference.
+            </p>
             </div>
           </div>
         </div>
@@ -308,13 +316,13 @@
     <div id="results-carousel" class="carousel results-carousel">
       <div class="box m-5">
         <div class="content has-text-centered">
-          <img src="static/images/correct/goodcase1.png" alt="grade-lv" width="60%"/>
+          <img src="static/images/goodcase1.png" alt="grade-lv" width="60%"/>
           <p> Case demonstration.</p>
         </div>
       </div>
       <div class="box m-5">
         <div class="content has-text-centered">
-          <img src="static/images/correct/goodcase1.png" alt="grade-lv" width="60%"/>
+          <img src="static/images/goodcase1.png" alt="grade-lv" width="60%"/>
           <p> Case demonstration.</p>
         </div>
       </div>
