@@ -265,6 +265,12 @@
     <div class="columns is-centered m-6">
       <div class="column is-full has-text-centered content">
         <h2 class="title is-3">Key Findings</h2>
+        <ul>
+          <li>Achieves 55.6 average score across 8 benchmarks (TQA, POPE, MME, etc.). When trained with a proper scale of additional data, VoRA matches conventional encoder-based MLLMs in terms of performance while reducing computational costs, demonstrating that LLMs can acquire native multimodal capabilities without external vision models. This challenges the widely perceived necessity of encoder-based architectures for multimodal tasks. </li>
+          <li>Vision as LoRA can stablize the vision internalization process.</li>
+          <li>Supports native-resolution inputs (VoRA-AnyRes variant).</li>
+          <li>Extensive ablations validate the effectiveness of each component.</li>
+        </ul>
         <div id="results-carousel" class="carousel results-carousel">
           <div class="box m-5">
             <div class="content has-text-centered">
@@ -274,7 +280,7 @@
           </div>
           <div class="box m-5">
             <div class="content has-text-centered">
-              <img src="static/images/ablation_loss" alt="stat len table" width="40%"/>
+              <img src="static/images/ablation_loss.png" alt="stat len table" width="40%"/>
               <p> Pre-training loss curves under different configurations. Loss values are smoothed (window=100) for visual clarity. The data sampling order was fixed to ensure fair comparison, as evidenced by the similar trajectories of the loss curves in various settings. LoRA-r1024|Bidirectional|Block-wise refers to the setting: LoRA with rank 1024, bi-directional attention masks for vision, and block-wise distillation. The configuration with the lowest loss was adopted as the default setting in our experiments.</p>
             </div>
           </div>
@@ -322,7 +328,7 @@
       </div>
       <div class="box m-5">
         <div class="content has-text-centered">
-          <img src="static/images/goodcase1.png" alt="grade-lv" width="60%"/>
+          <img src="static/images/goodcase2.png" alt="grade-lv" width="60%"/>
           <p> Case demonstration.</p>
         </div>
       </div>
