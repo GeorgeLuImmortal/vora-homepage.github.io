@@ -199,8 +199,14 @@
         <h2 class="title is-3">Introduction</h2>
         <div class="content has-text-justified">
           <p>
-            We introduce VoRA: the first benchmark focusing on Text-Centric Visual Question Answering (TEC-VQA), featuring high-quality human expert annotations across <b>9</b> diverse languages, consisting of <b>6,778</b> question-answer pairs across <b>2,116</b> images. A dedicated team of annotators meticulously created this large-scale dataset to ensure high fidelity and linguistic diversity. By comprehensively evaluating numerous state-of-the-art Multimodal Large Language Models (MLLMs), including GPT-4o, GPT-4V, Claude3, and Gemini, on the VoRA dataset, it is evident that there is still a large room for performance improvement, underscoring the value of VoRA. Additionally, we supply multilingual training data within the VoRA dataset, demonstrating that straightforward fine-tuning with this data can substantially enhance multilingual TEC-VQA performance. We aspire that VoRA will offer the research community fresh insights and stimulate further exploration in multilingual visual text comprehension.
+            We propose Vision as LoRA (VoRA), a novel paradigm converting LLMs into Multimodal Large Language Models (MLLMs) by integrating vision-specific LoRA layers. Unlike conventional encoder-based MLLMs, VoRA eliminates dependency on external vision modules through three key innovations:
           </p>
+          <ul>
+            <li>Vision-LoRA Integration: Trainable LoRA layers encode visual features directly into frozen LLM parameters</li>
+            <li>Block-wise Distillation: Transfer visual priors from ViT teachers via layer-aligned feature alignment</li>
+            <li>Bi-directional Attention: Replaces causal masks for enhanced visual context modeling</li>
+          </ul>
+          <p>VoRA achieves comparable performance to encoder-based MLLMs while reducing inference overhead through parameter merging.</p>
         </div>
       </div>
     </div>
