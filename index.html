@@ -222,23 +222,22 @@
           <div class="content">
           <h3 class="title is-4">1. Vision as LoRA</h3>
           <ul>
-            <li>Integrates LoRA layers into first N_vit blocks of frozen LLM</li>
-            <li>Only 2B parameters trainable (LoRA + 6M visual embedding layer)</li>
-            <li>Seamless parameter merging post-training</li>
+            <li>Integrates LoRA layers into first N_vit blocks of frozen LLM to stablize training.</li>
+            <li>Only 2B parameters trainable (LoRA + 6M visual embedding layer).</li>
+            <li>Seamless parameter merging post-training.</li>
           </ul>
 
           <h3 class="title is-4">2. Block-wise Distillation</h3>
           <ul>
-            <li>Aligns LLM block features with ViT teacher via cosine similarity loss</li>
-            <li>Combined distillation and language modeling losses</li>
-            <li>Accelerates training convergence by 35.5%</li>
+            <li>Aligns LLM block features with ViT teacher via cosine similarity loss.</li>
+            <li>Combined distillation and language modeling losses to accelerate converging.</li>
           </ul>
 
           <h3 class="title is-4">3. Bi-directional Attention</h3>
           <ul>
-            <li>Replaces causal masks for vision tokens</li>
-            <li>Improves average benchmark scores by 2.4 points</li>
-            <li>Maintains causal masking for text generation</li>
+            <li>Replaces causal masks for vision tokens.</li>
+            <li>Improves average benchmark scores by 2.4 points.</li>
+            <li>Maintains causal masking for text generation.</li>
           </ul>
         </div>
           <div class="content has-text-centered">
