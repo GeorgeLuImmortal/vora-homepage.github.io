@@ -211,102 +211,119 @@
 </section>
 
 <section class="section">
-  <div class="container is-max-desktop">
+  <div class="container" style="margin-bottom: 2vh;">
     <!-- Abstract. -->
     <div class="columns is-centered has-text-centered">
       <div class="column is-four-fifths">
-        <h2 class="title is-3">Abstract</h2>
+        <h2 class="title is-3">🔔News</h2>
         <div class="content has-text-justified">
           <p>
-            We propose Vision as LoRA (VoRA), a novel paradigm converting LLMs into Multimodal Large Language Models (MLLMs) by integrating vision-specific LoRA layers. Unlike conventional encoder-based MLLMs, VoRA eliminates dependency on external vision modules through three key innovations:
+            <b>🚀[2024-06-04]: We are excited to launch MTVQA, the first multilingual visual text comprehension evaluation benchmark for MLLMs! MTVQA includes 9 widely-used but low-resource languages, i.t., AR, DE, FR, IT, JA, KO, RU, TH, and VI</a>!🌟</b>
           </p>
-          <ul>
-            <li>Vision-LoRA Integration: Trainable LoRA layers encode visual features directly into frozen LLM parameters</li>
-            <li>Block-wise Distillation: Transfer visual priors from ViT teachers via layer-aligned feature alignment</li>
-            <li>Bi-directional Attention: Replaces causal masks for enhanced visual context modeling</li>
-          </ul>
-          <p>VoRA achieves comparable performance to encoder-based MLLMs while reducing inference overhead through parameter merging.</p>
+          <p>
+            <b>🔥[2023-06-04]: GPT-4o achieves the best performance overall, MiniCPM-V2.5 achieves the best performance among open-source models! 😆</b>
+          </p>
+      </div>      
+        <h2 class="title is-3">Introduction</h2>
+        <div class="content has-text-justified">
+          <p>
+            We introduce MTVQA: the first benchmark focusing on Text-Centric Visual Question Answering (TEC-VQA), featuring high-quality human expert annotations across <b>9</b> diverse languages, consisting of <b>6,778</b> question-answer pairs across <b>2,116</b> images. A dedicated team of annotators meticulously created this large-scale dataset to ensure high fidelity and linguistic diversity. By comprehensively evaluating numerous state-of-the-art Multimodal Large Language Models (MLLMs), including GPT-4o, GPT-4V, Claude3, and Gemini, on the MTVQA dataset, it is evident that there is still a large room for performance improvement, underscoring the value of MTVQA. Additionally, we supply multilingual training data within the MTVQA dataset, demonstrating that straightforward fine-tuning with this data can substantially enhance multilingual TEC-VQA performance. We aspire that MTVQA will offer the research community fresh insights and stimulate further exploration in multilingual visual text comprehension.
+          </p>
         </div>
       </div>
     </div>
+    <!--/ Abstract. -->
+</div>
+</section>
 
-    <!-- Method -->
-    <div class="columns is-centered">
+<!-- DATASET SECTION -->
+<section class="hero is-light is-small">
+  <div class="hero-body has-text-centered">
+  <h1 class="title is-1 mmmu">
+    <img src="static/images/mtvqa_icon.png" style="width:1em;vertical-align: middle" alt="Logo"/>
+    <span class="mmmu" style="vertical-align: middle">MTVQA Benchmark</span>
+  </h1>
+  </div>
+</section>
+            
+<section class="section">
+  <div class="container">
+    <div class="columns is-centered has-text-centered">
       <div class="column is-four-fifths">
-        <h2 class="title is-3">Core Methodology</h2>
-        <div class="content">
-          <h3 class="title is-4">1. Vision as LoRA</h3>
-          <ul>
-            <li>Integrates LoRA layers into first N_vit blocks of frozen LLM</li>
-            <li>Only 2B parameters trainable (LoRA + 6M visual embedding layer)</li>
-            <li>Seamless parameter merging post-training</li>
-          </ul>
-
-          <h3 class="title is-4">2. Block-wise Distillation</h3>
-          <ul>
-            <li>Aligns LLM block features with ViT teacher via cosine similarity loss</li>
-            <li>Combined distillation (L_distill) and language modeling (L_LM) losses</li>
-            <li>Accelerates training convergence by 35.5%</li>
-          </ul>
-
-          <h3 class="title is-4">3. Bi-directional Attention</h3>
-          <ul>
-            <li>Replaces causal masks for vision tokens</li>
-            <li>Improves average benchmark scores by 2.4 points</li>
-            <li>Maintains causal masking for text generation</li>
-          </ul>
+        <h2 class="title is-3">Overview</h2>
+        <div class="content has-text-justified">
+          <p>
+            We establish MTVQA, a novel and high-quality multilingual TEC-VQA benchmark, where all images are collected from real-world and meticulously annotated by human experts in nine languages: <b>Arabic (AR)</b>, <b>Korean (KO)</b>, <b>Japanese (JA)</b>, <b>Thai (TH)</b>, <b>Vietnamese (VI)</b>, <b>Russian (RU)</b>, <b>French (FR)</b>, <b>German (DE)</b>, and <b>Italian (IT)</b>. More concretely, to ensure the visual-textual alignment at most, the annotation process follows the raise-then-correct paradigm, where a group of human annotators raises several distinct questions, ranging from simple content extraction to text-related reasoning, and subsequently provides answers. Another group then double-checks these QA pairs to ensure accuracy and consistency. Consequently,  <b>6,678</b> training images and <b>21,829</b> question-answer pairs, as well as <b>2,116</b> test images and <b>6,778</b> question-answer pairs are obtained, covering more than 20 fine-grained scenarios from both documents and natural scenes, such as menus, logos, maps, bills, PPTs, research papers, and etc. To our knowledge, MTVQA is the first TEC-VQA dataset to provide native human annotations for multilingual text-rich scenarios, especially for low-source languages.
+          </p>
+          <div class="content has-text-centered">
+            <img src="static/images/annotation_process.png" alt="anno process" width="100%"/>
+            <p> A brief diagram of the annotation process.</p>
+          </div>
         </div>
-      </div>
+    </div>
     </div>
 
-    <!-- Experiments -->
-    <div class="columns is-centered">
+    <div class="columns is-centered has-text-centered">
       <div class="column is-four-fifths">
-        <h2 class="title is-3">Experimental Results</h2>
-        
-        <h3 class="title is-4">Key Findings</h3>
-        <ul>
-          <li>Achieves 55.6 average score across 8 benchmarks (TQA, POPE, MME, etc.)</li>
-          <li>Reduces training steps by 35.5% compared to vanilla LoRA</li>
-          <li>Supports native-resolution inputs (VoRA-AnyRes variant)</li>
-        </ul>
-
-        <h3 class="title is-4">Benchmark Comparison</h3>
-        <table class="table is-bordered is-striped">
-          <tr><th>Method</th><th>VQAv2</th><th>MMB</th><th>MMVet</th><th>RQA</th></tr>
-          <tr><td>LLaVA-1.5</td><td>78.5</td><td>64.3</td><td>31.1</td><td>54.8</td></tr>
-          <tr><td>VoRA</td><td>76.0</td><td>64.2</td><td>33.7</td><td>65.6</td></tr>
-          <tr><td>VoRA-AnyRes</td><td>76.0</td><td>61.3</td><td>33.7</td><td>61.1</td></tr>
-        </table>
-      </div>
-    </div>
-
-    <!-- Limitations -->
-    <div class="columns is-centered">
-      <div class="column is-four-fifths">
-        <h2 class="title is-3">Limitations</h2>
-        <div class="content">
+        <h2 class="title is-3">Comparisons with Existing Benchmarks</h2>
+        <div class="content has-text-justified">
           <ul>
-            <li>Requires 30M image-text pairs for pre-training</li>
-            <li>Underperforms on world knowledge tasks (MME Perception 473.3 vs LLaVA 607.1)</li>
-            <li>No vision token compression mechanism</li>
+            <li><strong>MTVQA vs. General VQA Benchmarks:</strong>
+              <ul>
+                <li>MTVQA focuses specifically on multilingual text-centric visual question answering, addressing the "visual-textual misalignment" problem.</li>
+                <li>General VQA benchmarks primarily focus on visual questions that do not necessarily require understanding textual information within images.</li>
+                <li>MTVQA provides human expert annotations for multilingual text-centric scenarios, ensuring accurate and contextually appropriate translations.</li>
+              </ul>
+            </li>
+            <li><strong>MTVQA vs. TEC-VQA Benchmarks:</strong>
+              <ul>
+                <li>MTVQA targets a wider range of languages, including low-resource languages, unlike most TEC-VQA benchmarks that concentrate on high-resource languages (e.g., English, Chinese, Japanese).</li>
+                <li>MTVQA addresses the limitations of translation-based approaches in TEC-VQA, such as nuanced meaning loss, contextual distortion, language bias, and question type diversity.</li>
+                <li>MTVQA integrates human expert annotations to resolve the "visual-textual misalignment" problem, whereas other TEC-VQA benchmarks often rely on off-the-shelf translation engines.</li>
+              </ul>
+            </li>
           </ul>
+    
+          
+          
         </div>
-      </div>
+    </div>
     </div>
 
-    <!-- Conclusion -->
-    <div class="columns is-centered">
-      <div class="column is-four-fifths">
-        <h2 class="title is-3">Conclusion</h2>
-        <div class="content">
-          <p>VoRA establishes a new paradigm for MLLMs through:</p>
-          <ul>
-            <li>Parameter-efficient vision integration via LoRA</li>
-            <li>Modality-agnostic architecture for multi-modal expansion</li>
-            <li>Native-resolution processing capability</li>
-          </ul>
-          <p>Future work will explore scaling laws and multi-modal extensions.</p>
+    <div class="columns is-centered m-6">
+      <div class="column is-full has-text-centered content">
+        <h2 class="title is-3">Statistics</h2>
+        <div id="results-carousel" class="carousel results-carousel">
+          <div class="box m-5">
+            <div class="content has-text-centered">
+              <img src="static/images/statistics_answer_len.png" alt="stat qa len" width="95%"/>
+              <p> Statistics of question and answer lengths of different languages aggregating training and test set, using GPT-4o tokenizer.</p>
+            </div>
+          </div>
+          <div class="box m-5">
+            <div class="content has-text-centered">
+              <img src="static/images/len_table.png" alt="stat len table" width="40%"/>
+              <p> Mean lengths of question-answer pairs in different languages of the training set and test set, using GPT-4o tokenizer.</p>
+            </div>
+          </div>
+          <div class="box m-5">
+            <div class="content has-text-centered">
+              <img src="static/images/word_cloud_qs.png" alt="stat word cloud qs" width="80%"/>
+              <p> Word clouds showcasing top questions in various languages, tokenized via NLTK with removing stop words, punctuation, and digits.</p>
+            </div>
+          </div>
+          <div class="box m-5">
+            <div class="content has-text-centered">
+              <img src="static/images/word_cloud_ans.png" alt="stat word cloud as" width="80%"/>
+              <p> Word clouds showcasing top answers in various languages, tokenized via NLTK with removing stop words, punctuation, and digits.</p>
+            </div>
+          </div>
+          <div class="box m-5">
+            <div class="content has-text-centered">
+              <img src="static/images/word_cloud_ans.png" alt="stat word cloud as" width="80%"/>
+              <p> Word clouds showcasing top answers in various languages, tokenized via NLTK with removing stop words, punctuation, and digits.</p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
