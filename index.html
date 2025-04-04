@@ -194,7 +194,7 @@
       <div class="column is-four-fifths">
         <h2 class="title is-3">🔔News</h2>
         <div class="content has-text-justified">
-            <p>🔥[2025-04-04]: We are excited to release <a href="https://huggingface.co/collections/Hon-Wong/vora-67ee34c9d32e9ac2358106ae">VoRA Weights and data</a> 😆</p>
+            <p>🔥[2025-04-04]: We are excited to release <a href="https://huggingface.co/collections/Hon-Wong/vora-67ee34c9d32e9ac2358106ae">VoRA weights and data</a> 😆.</p>
       </div>      
         <h2 class="title is-3">Introduction</h2>
         <div class="content has-text-justified">
@@ -214,25 +214,35 @@
 </div>
 </section>
 
-<!-- DATASET SECTION -->
-<section class="hero is-light is-small">
-  <div class="hero-body has-text-centered">
-  <h1 class="title is-1 mmmu">
-    <img src="static/images/VoRA_icon.png" style="width:1em;vertical-align: middle" alt="Logo"/>
-    <span class="mmmu" style="vertical-align: middle">VoRA Benchmark</span>
-  </h1>
-  </div>
-</section>
             
 <section class="section">
   <div class="container">
     <div class="columns is-centered has-text-centered">
       <div class="column is-four-fifths">
-        <h2 class="title is-3">Overview</h2>
+        <h2 class="title is-3">Core Methodology</h2>
         <div class="content has-text-justified">
-          <p>
-            We establish VoRA, a novel and high-quality multilingual TEC-VQA benchmark, where all images are collected from real-world and meticulously annotated by human experts in nine languages: <b>Arabic (AR)</b>, <b>Korean (KO)</b>, <b>Japanese (JA)</b>, <b>Thai (TH)</b>, <b>Vietnamese (VI)</b>, <b>Russian (RU)</b>, <b>French (FR)</b>, <b>German (DE)</b>, and <b>Italian (IT)</b>. More concretely, to ensure the visual-textual alignment at most, the annotation process follows the raise-then-correct paradigm, where a group of human annotators raises several distinct questions, ranging from simple content extraction to text-related reasoning, and subsequently provides answers. Another group then double-checks these QA pairs to ensure accuracy and consistency. Consequently,  <b>6,678</b> training images and <b>21,829</b> question-answer pairs, as well as <b>2,116</b> test images and <b>6,778</b> question-answer pairs are obtained, covering more than 20 fine-grained scenarios from both documents and natural scenes, such as menus, logos, maps, bills, PPTs, research papers, and etc. To our knowledge, VoRA is the first TEC-VQA dataset to provide native human annotations for multilingual text-rich scenarios, especially for low-source languages.
-          </p>
+          <div class="content">
+          <h3 class="title is-4">1. Vision as LoRA</h3>
+          <ul>
+            <li>Integrates LoRA layers into first N_vit blocks of frozen LLM</li>
+            <li>Only 2B parameters trainable (LoRA + 6M visual embedding layer)</li>
+            <li>Seamless parameter merging post-training</li>
+          </ul>
+
+          <h3 class="title is-4">2. Block-wise Distillation</h3>
+          <ul>
+            <li>Aligns LLM block features with ViT teacher via cosine similarity loss</li>
+            <li>Combined distillation (L_distill) and language modeling (L_LM) losses</li>
+            <li>Accelerates training convergence by 35.5%</li>
+          </ul>
+
+          <h3 class="title is-4">3. Bi-directional Attention</h3>
+          <ul>
+            <li>Replaces causal masks for vision tokens</li>
+            <li>Improves average benchmark scores by 2.4 points</li>
+            <li>Maintains causal masking for text generation</li>
+          </ul>
+        </div>
           <div class="content has-text-centered">
             <img src="static/images/annotation_process.png" alt="anno process" width="100%"/>
             <p> A brief diagram of the annotation process.</p>
